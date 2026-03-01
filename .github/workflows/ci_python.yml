@@ -1,0 +1,21 @@
+name: CI Python Qodana
+
+on:
+  push:
+    branches: [ "main", "master" ] # Se activa al subir código
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2024.1
+        with:
+          linter: jetbrains/qodana-python:latest
